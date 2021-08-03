@@ -7,10 +7,10 @@ function init_gpio(){
     shell.exec(luna_command+'list \'{}\'',function(code,stdout,stderr){
         var obj=JSON.parse(stdout);
         //let foundItem=users.findIndex(u=>u.id===req.params.id);
-        var foundIndex=obj.gpioList.find((item,idx)=>{
-            return item.pin==pin;
+        var found=obj.gpioList.find((item,idx)=>{
+            return item.name==pin;
         });
-        if(obj.gpioList[foundIndex].status!="used"){
+        if(found.status!="used"){
             var open_param=`'{"pin":"${pin}"}'`;
             shell.exec(luna_command+'open '+open_param,function(code,stdout,stderr){
                 var obj=JSON.parse(stdout);
