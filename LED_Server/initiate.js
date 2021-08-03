@@ -4,10 +4,12 @@ const luna_command='/usr/bin/luna-send -n 1 -f luna://com.webos.service.peripher
 const pin="gpio4";
 
 function init_gpio(){
-    shell.exec(luna_command+'list \'{}\''+open_param,function(code,stdout,stderr){
+    shell.exec(luna_command+'list \'{}\'',function(code,stdout,stderr){
         var obj=JSON.parse(stdout);
         //let foundItem=users.findIndex(u=>u.id===req.params.id);
-        var foundIndex=obj.gpioList.findIndx(u=>u.pin==pin);
+        var foundIndex=obj.gpioList.find((item,idx)=>{
+            return item.pin==pin;
+        });
         if(obj.gpioList[foundIndex].status!="used"){
             var open_param=`'{"pin":"${pin}"}'`;
             shell.exec(luna_command+'open '+open_param,function(code,stdout,stderr){
