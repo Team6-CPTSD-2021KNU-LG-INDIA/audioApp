@@ -1,27 +1,37 @@
-var test={
-    subscribed: false,
-    returnValue: true,
-    gpioList: [
-      { status: 'available', name: 'gpio12' },
-      { status: 'available', name: 'gpio13' },
-      { status: 'available', name: 'gpio16' },
-      { status: 'available', name: 'gpio17' },
-      { status: 'available', name: 'gpio18' },
-      { status: 'available', name: 'gpio19' },
-      { status: 'available', name: 'gpio20' },
-      { status: 'available', name: 'gpio21' },
-      { status: 'available', name: 'gpio22' },
-      { status: 'available', name: 'gpio23' },
-      { status: 'available', name: 'gpio24' },
-      { status: 'available', name: 'gpio25' },
-      { status: 'available', name: 'gpio4' },
-      { status: 'available', name: 'gpio5' },
-      { status: 'available', name: 'gpio6' }
-    ]
+const express=require('express');
+const request=require('request');
+
+const options={
+    uri:'http://192.168.56.1:3000/register',
+    method:'POST',
+    headers: {
+        name: 'content-type',
+        value: 'application/json'
+    },
+    body:{
+        id:'abc',
+        device_name:'LED',
+        port:'5000',
+        function:'light'
+    },
+    json:true
 };
-console.log(test.gpioList);
-var found=test.gpioList.find((item,idx)=>{
-    return item.name=="gpio4";
+
+request.post(options,function(err,httpRespond,body){
+    //console.log(err);
+    //console.log(httpRespond);
+    console.log(body);
 });
-console.log(foundIndex);
-//var foundindex=obj.gpioList
+
+const server=express();
+
+
+
+server.get('/light',(req,res)=>{
+    //light();
+    respond.json({returnmessage:"tttt"})
+});
+
+server.listen(5000,()=>{
+    console.log('server is running');
+});

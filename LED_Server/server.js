@@ -48,6 +48,8 @@ const options={
 };
 
 request.post(options,function(err,httpRespond,body){
+    console.log(err);
+    console.log(httpRespond);
     console.log(body);
 });
 
@@ -59,7 +61,6 @@ function turn_on(){
         var obj=JSON.parse(stdout);
         if(!obj.returnValue){
             console.log(stderr);
-            shell.exit(1);
         }
     });
 }
@@ -69,7 +70,6 @@ function turn_off(){
         var obj=JSON.parse(stdout);
         if(!obj.returnValue){
             console.log(stderr);
-            shell.exit(1);
         }
     });
 }
