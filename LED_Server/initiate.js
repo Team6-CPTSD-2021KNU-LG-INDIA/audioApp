@@ -20,9 +20,7 @@ function init_gpio(){
                 }
             });
         }
-    });
-
-    
+    });    
     
     var direction_param=`'{"pin":"${pin}","direction":"outLow"}'`;
     shell.exec(luna_command+'setDirection '+direction_param,function(code,stdout,stderr){
